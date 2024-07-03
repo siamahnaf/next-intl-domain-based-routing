@@ -1,6 +1,7 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import "./globals.css";
+import Switcher from "@/Components/Switcher";
 
 //Fonts
 import { macan, domaine } from "@/Fonts";
@@ -12,7 +13,10 @@ const RootLayout = async ({ children, params: { locale } }: Readonly<{ children:
   return (
     <html lang={locale}>
       <body className={`${macan.className} ${domaine.variable}`}>
-        {children}
+        <NextIntlClientProvider messages={messages}>
+          {children}
+          <Switcher />
+        </NextIntlClientProvider>
       </body>
     </html>
   );
